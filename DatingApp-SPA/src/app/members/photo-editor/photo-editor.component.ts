@@ -19,7 +19,7 @@ export class PhotoEditorComponent implements OnInit {
   baseUrl = environment.apiUrl;
   currentMainPhoto: Photo;
 
-  constructor(private authService: AuthService, private userService: UserService, 
+  constructor(private authService: AuthService, private userService: UserService,
               private alertify: AlertifyService) { }
 
   ngOnInit() {
@@ -32,8 +32,8 @@ export class PhotoEditorComponent implements OnInit {
 
   initializeUploader() {
     this.uploader = new FileUploader({
-      url: this.baseUrl + 'users/' + this.authService.decodedToken.nameid + '/photos',
-      authToken: 'Bearer ' + localStorage.getItem('token'),
+      url: this.baseUrl + 'users/' + this.authService.decodedToken.nameid + '/photos',   // the controller action url which uploader used
+      authToken: 'Bearer ' + localStorage.getItem('token'),                              // the authentification used for this user
       isHTML5: true,
       allowedFileType: ['image'],
       removeAfterUpload: true,
@@ -43,6 +43,7 @@ export class PhotoEditorComponent implements OnInit {
 
     this.uploader.onAfterAddingFile = (file) => {file.withCredentials = false; };
 
+    // response is from the API response after the action of adding photos
     this.uploader.onSuccessItem = (item, response, status, jeader) => {
       if (response) {
         const res: Photo = JSON.parse(response);
@@ -59,6 +60,8 @@ export class PhotoEditorComponent implements OnInit {
           this.authService.currentUser.photoUrl = photo.url;
           localStorage.setItem('user', JSON.stringify(this.authService.currentUser));
         }
+        console.log(photo);
+        console.log(response);
       }
     };
   }

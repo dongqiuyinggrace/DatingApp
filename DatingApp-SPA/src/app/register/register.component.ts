@@ -17,8 +17,8 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   bsConfig: Partial<BsDatepickerConfig>;
 
-  constructor(private authService: AuthService, private alertify: AlertifyService, 
-    private fb: FormBuilder, private router: Router) { }
+  constructor(private authService: AuthService, private alertify: AlertifyService,
+              private fb: FormBuilder, private router: Router) { }
 
   ngOnInit() {
     this.bsConfig = {
