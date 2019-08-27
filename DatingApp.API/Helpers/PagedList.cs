@@ -8,14 +8,6 @@ namespace DatingApp.API.Helpers
 {
     public class PagedList<T> : List<T>
     {
-        public PagedList(int currentPage, int totalPages, int pageSize, int totalCount)
-        {
-            this.CurrentPage = currentPage;
-            this.TotalPages = totalPages;
-            this.PageSize = pageSize;
-            this.TotalCount = totalCount;
-
-        }
         public int CurrentPage { get; set; }
         public int TotalPages { get; set; }
         public int PageSize { get; set; }
