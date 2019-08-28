@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DatingApp.API.Migrations
@@ -62,15 +63,22 @@ namespace DatingApp.API.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Photos",
-                columns: table => new
+                columns: table =>
                 {
-                    Id = table.Column<int>(nullable: false)
+                    return new
+                    {
+                        Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", 
+                        SqlServerValueGenerationStrategy.IdentityColumn)
+                        .Annotation("MySql:ValueGenerationStrategy",
+                        MySqlValueGenerationStrategy.IdentityColumn)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Url = table.Column<string>(nullable: true),
-                    Description = table.Column<string>(nullable: true),
-                    DateAdded = table.Column<DateTime>(nullable: false),
-                    IsMain = table.Column<bool>(nullable: false),
-                    UserId = table.Column<int>(nullable: false)
+                        Url = table.Column<string>(nullable: true),
+                        Description = table.Column<string>(nullable: true),
+                        DateAdded = table.Column<DateTime>(nullable: false),
+                        IsMain = table.Column<bool>(nullable: false),
+                        UserId = table.Column<int>(nullable: false)
+                    };
                 },
                 constraints: table =>
                 {

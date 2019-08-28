@@ -14,7 +14,7 @@ import { UserService } from '../_services/user.service';
 export class MessagesComponent implements OnInit {
   messages: Message[];
   pagination: Pagination;
-  messageContainer: 'Unread';
+  messageContainer = 'Unread';
   constructor(private authService: AuthService, private altertify: AlertifyService,
               private route: ActivatedRoute, private userSevice: UserService) { }
 
